@@ -5,7 +5,7 @@ import { MICROBIT_LEVELS } from '../data/microbitLessons'
 import { CodeBlock } from '../components/ui/code-block'
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
-import { useSEO } from '../hooks/useSEO'
+import { SEO } from '../components/layout/SEO'
 
 export function MicrobitLesson() {
   const { levelId } = useParams<{ levelId: string }>()
@@ -21,10 +21,12 @@ export function MicrobitLesson() {
   const prevLevel = levelIndex > 0 ? MICROBIT_LEVELS[levelIndex - 1] : null
   const nextLevel = levelIndex < MICROBIT_LEVELS.length - 1 ? MICROBIT_LEVELS[levelIndex + 1] : null
 
-  useSEO({
-    title: `${currentLevel.title} — Educación Pi`,
-    description: currentLevel.subtitle
-  })
+  // Ensure title is <= 60 chars
+  const pageTitle = `${currentLevel.title} — Educación Pi`.length > 60
+    ? `${currentLevel.title.substring(0, 42)}... — Educación Pi`
+    : `${currentLevel.title} — Educación Pi`
+
+  const pageUrl = `https://educacion.pi.com.ve/microbit/${currentLevel.id}/`
 
   const toggleSolution = (index: number) => {
     setExpandedSolutions((prev) => ({ ...prev, [index]: !prev[index] }))
@@ -32,6 +34,13 @@ export function MicrobitLesson() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+      <SEO
+        title={pageTitle}
+        description={currentLevel.subtitle}
+        url={pageUrl}
+        type="article"
+      />
+
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
         <Link to="/microbit" className="flex items-center gap-1 hover:text-sky-600 dark:hover:text-sky-400">

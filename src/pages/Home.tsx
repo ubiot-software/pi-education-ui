@@ -3,19 +3,19 @@ import { Code, Cpu, ArrowRight, BookOpen, Sparkles, CheckCircle2, Rocket } from 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
-import { useSEO } from '../hooks/useSEO'
+import { SEO } from '../components/layout/SEO'
 
 export function Home() {
-  useSEO({
-    title: 'Bienvenidos a Educación Pi — Cursos de Programación y Electrónica',
-    description: 'Explora nuestros cursos interactivos de programación estructurada con Racket (HTDP) y electrónica con Micro:bit.'
-  })
-
   return (
     <div className="space-y-16 pb-16">
+      <SEO
+        title="Educación Pi — Cursos de Programación y Electrónica"
+        description="Explora nuestros cursos interactivos de programación estructurada con Racket (HTDP) y electrónica con Micro:bit."
+        url="https://educacion.pi.com.ve/"
+      />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-slate-200/80 bg-gradient-to-b from-blue-50/50 via-white to-transparent py-16 dark:border-slate-800/80 dark:from-slate-900/50 dark:via-slate-950 dark:to-transparent sm:py-24">
-        {/* Glow backdrop blobs */}
         <div className="absolute top-1/2 left-1/2 -z-10 h-[350px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl dark:bg-blue-600/15" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center space-y-6">

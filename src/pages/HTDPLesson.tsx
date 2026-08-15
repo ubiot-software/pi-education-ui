@@ -5,7 +5,7 @@ import { HTDP_LEVELS } from '../data/htdpLessons'
 import { CodeBlock } from '../components/ui/code-block'
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
-import { useSEO } from '../hooks/useSEO'
+import { SEO } from '../components/layout/SEO'
 
 export function HTDPLesson() {
   const { levelId } = useParams<{ levelId: string }>()
@@ -21,10 +21,12 @@ export function HTDPLesson() {
   const prevLevel = levelIndex > 0 ? HTDP_LEVELS[levelIndex - 1] : null
   const nextLevel = levelIndex < HTDP_LEVELS.length - 1 ? HTDP_LEVELS[levelIndex + 1] : null
 
-  useSEO({
-    title: `${currentLevel.title} — Educación Pi`,
-    description: currentLevel.subtitle
-  })
+  // Ensure title is <= 60 chars
+  const pageTitle = `${currentLevel.title} — Educación Pi`.length > 60
+    ? `${currentLevel.title.substring(0, 42)}... — Educación Pi`
+    : `${currentLevel.title} — Educación Pi`
+
+  const pageUrl = `https://educacion.pi.com.ve/programas/${currentLevel.id}/`
 
   const toggleSolution = (index: number) => {
     setExpandedSolutions((prev) => ({ ...prev, [index]: !prev[index] }))
@@ -32,6 +34,13 @@ export function HTDPLesson() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+      <SEO
+        title={pageTitle}
+        description={currentLevel.subtitle}
+        url={pageUrl}
+        type="article"
+      />
+
       {/* Breadcrumb Navigation */}
       <nav className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
         <Link to="/programas" className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400">

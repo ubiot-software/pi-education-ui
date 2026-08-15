@@ -4,16 +4,18 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
 import { MICROBIT_LEVELS } from '../data/microbitLessons'
-import { useSEO } from '../hooks/useSEO'
+import { SEO } from '../components/layout/SEO'
 
 export function MicrobitIndex() {
-  useSEO({
-    title: 'Curso Micro:bit — Electrónica y Programación en Educación Pi',
-    description: 'Aprende programación visual y electrónica interactiva con la tarjeta Micro:bit y el simulador Microsoft MakeCode.'
-  })
-
   return (
     <div className="space-y-12 pb-16">
+      <SEO
+        title="Curso Micro:bit — Educación Pi"
+        description="Aprende programación visual y electrónica con Micro:bit y MakeCode."
+        url="https://educacion.pi.com.ve/microbit/"
+        type="course"
+      />
+
       {/* Header Banner */}
       <section className="border-b border-slate-200 bg-gradient-to-r from-sky-900 via-blue-900 to-slate-900 py-12 text-white dark:border-slate-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">

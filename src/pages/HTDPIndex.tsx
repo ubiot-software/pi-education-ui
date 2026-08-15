@@ -4,16 +4,18 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
 import { HTDP_LEVELS } from '../data/htdpLessons'
-import { useSEO } from '../hooks/useSEO'
+import { SEO } from '../components/layout/SEO'
 
 export function HTDPIndex() {
-  useSEO({
-    title: '¿Cómo Diseñar Programas? — Curso Racket en Educación Pi',
-    description: 'Diseña programas de forma estructurada, lógica y comprensible. Método guiado desde datos sencillos hasta abstracción.'
-  })
-
   return (
     <div className="space-y-12 pb-16">
+      <SEO
+        title="¿Cómo Diseñar Programas? — Educación Pi"
+        description="Diseña programas de forma estructurada con Racket y la Receta de Diseño HTDP."
+        url="https://educacion.pi.com.ve/programas/"
+        type="course"
+      />
+
       {/* Header Banner */}
       <section className="border-b border-slate-200 bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 py-12 text-white dark:border-slate-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
